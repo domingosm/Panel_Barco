@@ -16,6 +16,8 @@ o hacerlo automatiamente al desconectar las baterias.
 
 */
 
+//ver si esto esta en GitHub
+
 
 //*******  INTERRUPCIONES  *******************************************************************
 portMUX_TYPE synch0 = portMUX_INITIALIZER_UNLOCKED; //Necesario para usar la int externa
