@@ -101,8 +101,8 @@ HardwareSerial Panta1(UART2);
 #define DEBUG true // flag to turn on/off debugging
 //Cambia todas las instruciones Monitor.print() por if(DEBUG)Monitor.print(), por lo que solo
 //se ejcutaran si DEBUG es true
-#define Monitor if(DEBUG)Monitor    
-#define Serial Monitor     //Cambia Serial.print() por Monitor.print()
+//#define Monitor if(DEBUG)Monitor    
+//#define Serial Monitor     //Cambia Serial.print() por Monitor.print()
 
 //***** I2C  ***********************************************************
 //Para usar un puerto I2C, primero tenemos que instanciar un objeto de la clase TwoWire y

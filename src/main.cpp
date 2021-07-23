@@ -16,8 +16,6 @@ o hacerlo automatiamente al desconectar las baterias.
 
 */
 
-//ver si esto esta en GitHub
-
 
 //*******  INTERRUPCIONES  *******************************************************************
 portMUX_TYPE synch0 = portMUX_INITIALIZER_UNLOCKED; //Necesario para usar la int externa
@@ -81,6 +79,10 @@ void setup()
    Monitor.begin(115200, SERIAL_8N1, RX0_PIN, TX0_PIN); //baudrate, protocol, Rx, Tx
    Panta0.begin( 115200,SERIAL_8N1,RX1_PIN,TX1_PIN);
    //Panta1.begin( 256000,SERIAL_8N1,RX2_PIN,TX2_PIN);
+   //Serial.setTimeout(50);
+
+
+   
 
    //setCpuFrequencyMhz(240); //En Arduino 240MHz por defecto
    Monitor.printf("\r\n\nESP32: Xtal=%uMHz, CPU=%uMHz, Flash=%fMB", getXtalFrequencyMhz(),getCpuFrequencyMhz(),spi_flash_get_chip_size()/1000000.0);
@@ -91,6 +93,12 @@ void setup()
    Monitor.printf("\r\nComp: %s %s\r\n", __DATE__, __TIME__);
    //SRAM?????
    //size_t flash = spi_flash_get_chip_size();
+
+   //Entrada datos por consola
+
+
+
+
 
    //Iniciamos el puerto I2C0, y mapeamos los pines y la frecuencia
    Wire.begin(SDA_PIN, SCL_PIN, 400000); // SDA, SCL, 400kHz frequency
@@ -149,6 +157,20 @@ void setup()
 
 void loop()
 {
+   if (Monitor.available())
+   {
+      /*
+      char buffer[3];
+      Serial.readBytesUntil('\n', buffer, 3);
+      int data = atoi(buffer);
+      */
+
+      String str = Monitor.readStringUntil('\n');
+      int data = str.toInt();
+      Monitor.printf("\r\nPin:%u",data);
+      Monitor.begin(115200, SERIAL_8N1, RX0_PIN, data); //baudrate, protocol, Rx, Tx
+   }
+
    static bool i = 0;
    current_millis = millis();
    if(current_millis - previus_millis >=1000){  //Cada segundo
