@@ -168,7 +168,7 @@ void loop()
       String str = Monitor.readStringUntil('\n');
       int data = str.toInt();
       Monitor.printf("\r\nPin:%u",data);
-      Monitor.begin(115200, SERIAL_8N1, RX0_PIN, data); //baudrate, protocol, Rx, Tx
+      Panta0.begin(115200, SERIAL_8N1, RX0_PIN, data); //baudrate, protocol, Rx, Tx
    }
 
    static bool i = 0;
@@ -194,7 +194,7 @@ void loop()
          Panta0.write(0xFF);
          Panta0.write(0xFF);
          delay(1000);
-         Monitor.printf("bClaxon.val=1");
+         //Monitor.printf("\r\nbClaxon.val=1");
          
       //}
    }
